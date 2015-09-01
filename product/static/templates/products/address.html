@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="address.js"></script>
+</head>
+
+<body>
+
+<div id="navigation">
+
+    <a href="products.html">Products</a>
+    <a href="user_products.html">My Products</a>
+    <a href="address.html">My Addresses</a>
+    <a href="signup.html">Signup</a>
+    <a href="profile.html">Profile</a>
+    <a href="upload_image.html">Upload image</a>
+    <a href="login.html">Login</a>
+    <a href="logout.html">Logout</a>
+
+
+</div>
+<div style="float: right">
+    <label for="user"> Your id</label>
+    <input type="number" id="user">
+    <button onclick="fill()">View Addresses</button>
+</div>
+
+<table id="main" border="1">
+    <tr>
+        <th>Addresses</th>
+
+    </tr>
+
+</table>
+<table border="1">
+    <tr>
+        <td><input type="text" id="address" placeholder="Enter address"></td>
+
+        <td>
+            <button id="create" style="width: 100%;">Create</button>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+<table>
+    {% for error in form.non_field_errors %}
+        <tr>
+            <td>{{ error }}</td>
+        </tr>
+    {% endfor %}
+
+    {% for field in form %}
+        {% for error in form.username.errors %}
+            <tr>
+                <td>{{ error }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+        <td>{{ field }}</td></td>
+    {% endfor %}
+</table>
