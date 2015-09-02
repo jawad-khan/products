@@ -28,14 +28,14 @@ class UserAuthenticationTestCase(TestCase):
         response=self.client.get('/app/my_products/')
         self.assertEqual(response.status_code,401)
 
-        # Address view test
+        # user profile view test
         response=self.client.get('/app/profile/')
         self.assertEqual(response.status_code,401)
-        # Address view test
+        # image upload view test
         response=self.client.get('/app/upload_image/')
         self.assertEqual(response.status_code,401)
 
-        # Address view test
+        # Logout view test
         response=self.client.get('/app/logout/')
         self.assertEqual(response.status_code,401)
 
