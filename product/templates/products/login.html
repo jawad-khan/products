@@ -3,6 +3,7 @@
 <head>
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="global.js"></script>
     <script>
         function login()
         {
@@ -13,7 +14,7 @@
                 $.ajax(
                   {
                     type: 'POST',
-                    url: 'http://localhost:8000/app/login/',
+                    url: base_path+'app/login/',
                     dataType: 'json',
                     data:{"username":name,"password":password},
                     success: function (data, status) {
@@ -36,7 +37,6 @@
         }
 
     </script>
-     <script src="global.js"></script>
 
 </head>
 

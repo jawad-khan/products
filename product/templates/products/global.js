@@ -1,10 +1,12 @@
 
+var base_path='http://localhost:8000/';
 
-function logout()
+function logout(e)
 {
+    e.preventDefault();
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8000/app/logout/',
+        url: base_path+'app/logout/',
         headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
         dataType: 'json',
         success: function (data, status) {

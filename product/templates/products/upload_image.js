@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8000/app/upload_image/',
+            url: base_path+'app/upload_image/',
             data: form_data,
             cache: false,
             headers:{"Authorization": "Token "+ localStorage.getItem('Token')},

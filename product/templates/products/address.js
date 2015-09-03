@@ -2,7 +2,7 @@ function create() {
     if ($("#address").val()) {
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8000/app/address/',
+            url: base_path+'app/address/',
             dataType: 'json',
             headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
             data: {"address": $("#address").val()},
@@ -32,7 +32,7 @@ function fill() {
 
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8000/app/address/',
+            url: base_path+'app/address/',
             headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
             dataType: 'json',
             success: function (data, status) {

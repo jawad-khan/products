@@ -3,27 +3,22 @@
 <head>
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="global.js"></script>
     <script>
         function signup() {
             if ($("#username").val() && $("#email").val() && $("#password").val() && $("#phone").val())
             {
 
-                var a =
-                {
-                    phone: $("#phone").val()
-                }
-                 var b  = {
+                $.ajax({
+                    type: 'POST',
+                    url: base_path+'app/signup/',
+                    dataType: 'json',
+                    data:{
                         "username": $("#username").val(),
                         "email": $("#email").val(),
                         "password": $("#password").val(),
-                        "phone": a
-                    }
-                console.log('yahhhhhhhhh',b)
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:8000/app/signup/',
-                    dataType: 'json',
-                    data:b,
+                        "phone": $("#phone").val()
+                    },
                     success: function (data, status) {
 
                         $("#username").val("");
@@ -45,7 +40,7 @@
         }
 
     </script>
-     <script src="global.js"></script>
+
 </head>
 
 <body>

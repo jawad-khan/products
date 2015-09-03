@@ -3,13 +3,14 @@
 <head>
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="global.js"></script>
     <script>
          function load_profile()
             {
                  $.ajax({
                   type: 'GET',
                   headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
-                  url: 'http://localhost:8000/app/profile/',
+                  url: base_path+'app/profile/',
                   dataType: 'json',
                   success: function (data, status) {
                       $("#name").text("Username:"+data.user.username);
@@ -27,7 +28,6 @@
            load_profile();
         });
     </script>
-     <script src="global.js"></script>
 </head>
 
 <body>

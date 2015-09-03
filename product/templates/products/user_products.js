@@ -5,9 +5,9 @@ function product_html(data) {
     '<td><input class="price" type="text" readonly value=' + data.Price + '></td>' +
     '</tr>');
 }
-function append_product(data, append) {
+function append_product(data) {
     var html_string = product_html(data);
-    append == undefined ? $("#main").append(html_string) : $("#main").html(html_string);
+    $("#main").append(html_string) ;
 
 }
 
@@ -15,7 +15,7 @@ function append_product(data, append) {
 function fill() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/app/my_products/',
+        url: base_path+'app/my_products/',
         headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
         dataType: 'json',
         success: function (data, status) {
