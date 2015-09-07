@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^products/$', views.products, name='products'),
     url(r'^delete_product/(?P<id>.+)/$', views.delete_product, name="delete_product"),
-    url(r'^edit_product/(?P<id>.+)/$', views.Edit_product, name="Edit_product"),
+    url(r'^edit_product/(?P<id>.+)/$', views.edit_product, name="Edit_product"),
     url(r'^my_products/$', views.user_products, name='user_product'),
     url(r'^profile/$', views.profile),
     url(r'^upload_image/',views.upload_image),

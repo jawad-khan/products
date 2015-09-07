@@ -1,17 +1,14 @@
-
-
-
-$(document).ready(function() {
+$(document).ready(function () {
     $("#upload_image").click(function (e) {
         e.preventDefault();
-        form_data =new FormData($("#image_form").get(0));
+        form_data = new FormData($("#image_form").get(0));
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8000/app/upload_image/',
+            url: base_path + 'app/upload_image/',
             data: form_data,
             cache: false,
-            headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
+            headers: {"Authorization": "Token " + localStorage.getItem('Token')},
             processData: false, // Don't process the files
             contentType: false,
             success: function (data) {

@@ -9,14 +9,18 @@ from rest_framework.permissions import IsAuthenticated
 from models import product
 from serializers import product_serializer, user_serializer, address_serializer, user_product_serializer,image_serializer,complete_profile
 from rest_framework_expiring_authtoken.authentication import ExpiringTokenAuthentication
+from django.http.request import QueryDict
 # Create your views here.
 
 
 
 @api_view(['POST'])
 def signup(request):
-    print request.data
-    user = user_serializer(data=request.data)
+
+
+    arranged_data=dict(request.data.dict())
+    arranged_data['phone']={'phone':request.data['phone']}
+    user = user_serializer(data=arranged_data)
     if user.is_valid():
         new_user = user.save()
         user.data['id'] = new_user.id
@@ -86,7 +90,7 @@ def user_products(request):
 @api_view(['POST'])
 @authentication_classes((ExpiringTokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-def Edit_product(request, id):
+def edit_product(request, id):
     try:
         object = product.objects.get(pk=id)
     except product.DoesNotExist as error:

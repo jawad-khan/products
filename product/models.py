@@ -17,12 +17,12 @@ class address(models.Model):
 
 
 class product(models.Model):
-    Name = models.CharField(max_length=15, null=False, blank=False);
-    Detail = models.CharField(max_length=25, );
-    Price = models.IntegerField(default=0, blank=False);
+    name = models.CharField(max_length=15, null=False, blank=False);
+    detail = models.CharField(max_length=25, );
+    price = models.IntegerField(default=0, blank=False);
 
 
-class User_Product(models.Model):
+class user_product(models.Model):
     user = models.ForeignKey(User);
     product = models.ForeignKey(product);
     bought_at = models.DateTimeField(default=datetime.datetime.now)

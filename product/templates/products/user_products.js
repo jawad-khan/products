@@ -1,13 +1,13 @@
 function product_html(data) {
     return ('<tr id=' + data.id + '>' +
-    '<td><input class = "name" type="text" readonly value=' + data.Name + '></td> ' +
-    '<td><input class="detail" type="text" readonly value=' + data.Detail + '></td>' +
-    '<td><input class="price" type="text" readonly value=' + data.Price + '></td>' +
+    '<td><input class = "name" type="text" readonly value=' + data.name + '></td> ' +
+    '<td><input class="detail" type="text" readonly value=' + data.detail + '></td>' +
+    '<td><input class="price" type="text" readonly value=' + data.price + '></td>' +
     '</tr>');
 }
-function append_product(data, append) {
+function append_product(data) {
     var html_string = product_html(data);
-    append == undefined ? $("#main").append(html_string) : $("#main").html(html_string);
+    $("#main").append(html_string);
 
 }
 
@@ -15,8 +15,8 @@ function append_product(data, append) {
 function fill() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/app/my_products/',
-        headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
+        url: base_path + 'app/my_products/',
+        headers: {"Authorization": "Token " + localStorage.getItem('Token')},
         dataType: 'json',
         success: function (data, status) {
             for (product in data) {
@@ -25,9 +25,7 @@ function fill() {
             }
 
         },
-        error: function (error) {
-            alert(error.responseText);
-        }
+        error: error_response
     });
 }
 

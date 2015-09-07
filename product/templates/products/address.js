@@ -2,9 +2,9 @@ function create() {
     if ($("#address").val()) {
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8000/app/address/',
+            url: base_path + 'app/address/',
             dataType: 'json',
-            headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
+            headers: {"Authorization": "Token " + localStorage.getItem('Token')},
             data: {"address": $("#address").val()},
             success: function (data, status) {
                 $("#address").val("");
@@ -30,22 +30,20 @@ function append_address(data) {
 
 function fill() {
 
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8000/app/address/',
-            headers:{"Authorization": "Token "+ localStorage.getItem('Token')},
-            dataType: 'json',
-            success: function (data, status) {
-                for (address in data) {
-                    append_address(data[address]);
+    $.ajax({
+        type: 'GET',
+        url: base_path + 'app/address/',
+        headers: {"Authorization": "Token " + localStorage.getItem('Token')},
+        dataType: 'json',
+        success: function (data, status) {
+            for (address in data) {
+                append_address(data[address]);
 
-                }
-
-            },
-            error: function (error) {
-                alert(error.responseText);
             }
-        });
+
+        },
+        error: error_response
+    });
 
 }
 
