@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +13,6 @@
     <meta name="author" content="">
 
     <title>Products</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="global.js"></script>
-    <script src="user_products.js"></script>
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -32,32 +30,64 @@
     <![endif]-->
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="global.js"></script>
-    <script>
-        function load_profile() {
-            $.ajax({
-                type: 'GET',
-                headers: {"Authorization": "Token " + localStorage.getItem('Token')},
-                url: base_path + 'app/profile/',
-                dataType: 'json',
-                success: function (data, status) {
-                    $("#name").text(data.user.username);
-                    $("#email").text(data.user.email);
-                    $("#phone").text(data.phone);
-                    $("#image").attr("src", data.image);
+    <script src="js/global.js"></script>
+    <script src="js/profile.js"></script>
 
-                },
-                error: error_response
-            });
+    <style>
+        .image_popup {
+            margin-top: 6 `%;
+            margin-left: 25%;
+            background-color: lightsteelblue;
+            z-index: 100;
+            width: 40%;
+            position: absolute;
+            display: none;
+            padding: 2%;
+
         }
-        $(document).ready(function () {
-            load_profile();
-        });
-    </script>
-
+    </style>
 </head>
 
 <body>
+
+
+<div id="cover_image_popup" class="alert  alert-dismissible center-block image_popup" style="width: 50%;" role=" alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="toggle_cover_popup()"><span
+            aria-hidden="true">&times;</span></button>
+
+    <form id="cover_form" class="thumbnail form-inline" method="post" action="" enctype="multipart/form-data">
+        <img src="images/thumbnail.jpg" alt="Choose from computers" id="cover_display" style="height: 250px; ">
+
+        <div class="caption">
+            <p>
+                <input style="display: inline" type="file" accept="image/*" class="btn btn-default " id="local_cover"
+                       value="Choose Cover" name="cover">
+                <input style="display: inline" type="submit" class="btn btn-default" value="Upload Image"
+                       id='upload_cover'>
+
+            </p>
+        </div>
+    </form>
+</div>
+
+<div id="profile_image_popup" class="alert  alert-dismissible center-block image_popup" role=" alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close_popup"><span
+            aria-hidden="true">&times;</span></button>
+
+    <form id="image_form" class="thumbnail form-inline" method="post" action="" enctype="multipart/form-data">
+        <img src="images/thumbnail.jpg" alt="Choose from computers" id="page_display" style="height: 450px; ">
+
+        <div class="caption">
+            <p>
+                <input style="display: inline" type="file" accept="image/*" class="btn btn-default " id="local_image"
+                       value="Choose Image" name="image">
+                <input style="display: inline" type="submit" class="btn btn-default" value="Upload Image"
+                       id='upload_image'>
+
+            </p>
+        </div>
+    </form>
+</div>
 
 <div class="container">
     <div class="masthead">
@@ -68,29 +98,37 @@
                 <li><a href="user_products.html">My Products</a></li>
                 <li><a href="address.html">My Addresses</a></li>
                 <li class="active"><a href="profile.html">Profile</a></li>
-                <li><a href="upload_image.html">Upload image</a></li>
                 <li><a href="" id="logout">Logout</a></li>
             </ul>
         </nav>
     </div>
 
-    <div class="row" style="margin: 0 auto;text-align: left;width: 50%; margin-top: 3%;">
+    <div class="row " style="padding: 2%; float:left;width: 100%; position: relative; height: 100px;">
+        <img class="media-object" src="" id="cover" width="100%">
+        <a id="change_cover_link" href="#">Update cover photo</a>
+    </div>
+
+    <div class="row" style="padding: 2%;float: left; position: absolute;">
         <div class="media">
             <a class="pull-left" href="#">
-                <img class="media-object dp img-thumbnail" src="" id="image" style="width: 100px;height:100px;">
+                <img class="media-object dp img-thumbnail" src="" id="image" style="width: 120px;height:100px ;">
             </a>
 
             <div class="media-body">
-                <h4 class="media-heading" id="name"></h4>
+                <h4 class="media-middle" id="name"></h4>
                 <h5 id="email"></h5>
                 <h5 id="phone"></h5>
-                <hr style="margin:8px auto">
 
             </div>
-        </div>
 
+        </div>
+        <a id="change_profile_link" href="#">Update profile photo</a>
     </div>
+
+
 </div>
+</div>
+
 
 </body>
 </html>
