@@ -2,6 +2,9 @@
 <!-- saved from url=(0048)http://getbootstrap.com/examples/justified-nav/# -->
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +14,9 @@
     <meta name="author" content="">
 
     <title>Products</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="global.js"></script>
-    <script src="product_js.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/product_js.js"></script>
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
@@ -23,13 +24,31 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./mainpage_files/ie-emulation-modes-warning.js"></script>
-    <style type="text/css"></style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+
+        .fit-parent {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .image_popup {
+            margin-top: 9%;
+            margin-left: 25%;
+            background-color: lightsteelblue;
+            z-index: 100;
+            width: 40%;
+            position: absolute;
+            display: none;
+            padding: 2%;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -38,6 +57,34 @@
 
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
+
+    <div class="alert alert-info alert-dismissible" style="display: none" role="alert" id="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="alert_cross"><span
+                aria-hidden="true">&times;</span></button>
+        <div id="alert-message"></div>
+    </div>
+    <div id="product_image_popup" class="alert  alert-dismissible center-block image_popup" role=" alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close_popup"><span
+                aria-hidden="true">&times;</span></button>
+
+        <form id="image_form" class="thumbnail form-inline" method="post" action="" enctype="multipart/form-data">
+            <img src="images/thumbnail.jpg" alt="Choose from computers" id="page_display" style="height: 450px; ">
+            <input type="number" name="id" id="product-id" style="display: none ; ">
+
+            <div class="caption">
+                <p>
+                    <input style="display: inline" type="file" accept="image/*" class="btn btn-default "
+                           id="local_image"
+                           value="Choose Image" name="image">
+                    <input style="display: inline" type="submit" class="btn btn-default" value="Upload Image"
+                           id='upload_image'>
+
+                </p>
+            </div>
+        </form>
+    </div>
+
+
     <div class="masthead">
         <h3 class="text-muted">Product application</h3>
         <nav>
@@ -46,32 +93,36 @@
                 <li><a href="user_products.html">My Products</a></li>
                 <li><a href="address.html">My Addresses</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="upload_image.html">Upload image</a></li>
                 <li><a href="" id="logout">Logout</a></li>
             </ul>
         </nav>
     </div>
-    <div class="row" style=" display: table ; margin: 0 auto; margin-top: 3% ; ">
-        <table id="main" border="1" class="table-responsive table-hover table-bordered table-striped table-bordered">
-            <tr>
-                <th>Name</th>
-                <th>Detail</th>
-                <th>Price</th>
-                <th colspan="3">Options</th>
-            </tr>
-        </table>
-        <table border="1" class="table-responsive table-hover table-bordered  table-bordered">
-            <tr>
-                <td><input type="text" id="name" placeholder="Enter name"></td>
-                <td><input type="text" id="detail" placeholder="Enter Details"></td>
-                <td><input type="number" id="price" placeholder="Enter Price"></td>
-                <td colspan="3">
-                    <button id="create" style="width: 100%;">Create</button>
-                </td>
-            </tr>
+    <div class="row">
+        <div class="col-md-6">
+            <ul id="main" style="  margin: 0 auto; margin-top: 3% ; ">
 
-        </table>
 
+            </ul>
+        </div>
+        <div class="col-md-6" style="margin-top: 3%;">
+            <div class="row">
+                <table border="1" class="table-responsive table-hover table-bordered  table-bordered"
+                       style="margin-left: 3%; margin-top: 5%;">
+                    <tr>
+                        <td><input class="form-control" type="text" id="name" placeholder="Enter name"></td>
+                        <td><input class="form-control" type="text" id="detail" placeholder="Enter Details"></td>
+                        <td><input class="form-control" type="number" id="price" placeholder="Enter Price"></td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <div class="row" style="margin-top: 5%;">
+                <button style="width: 20%; margin-right: 5%;" class="btn btn-default  pull-right" id="create"
+                        style="width: 100%;">Add Product
+                </button>
+            </div>
+        </div>
     </div>
     <!-- Site footer -->
     <footer class="footer">

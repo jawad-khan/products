@@ -26,6 +26,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/global.js"></script>
+
     <script>
         function login(e) {
             e.preventDefault();
@@ -35,18 +37,15 @@
             $.ajax(
                     {
                         type: 'POST',
-                        url: 'http://localhost:8000/app/login/',
+                        url: base_path + 'app/login/',
                         dataType: 'json',
                         data: {"username": name, "password": password},
                         success: function (data, status) {
 
                             localStorage.setItem("Token", data.token);
-                            alert("You have successfully logged in");
                             window.open("profile.html", "_self");
                         },
-                        error: function (error) {
-                            alert(error.responseText);
-                        }
+                        error: fields_error_response
                     });
 
         }
@@ -58,7 +57,6 @@
         });
 
     </script>
-    <script src="global.js"></script>
 
 </head>
 
@@ -74,12 +72,16 @@
             </ul>
         </nav>
     </div>
+
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <span class="alert-danger" id="non_field_errors_error"></span>
         <label for="username" class="sr-only">username</label>
-        <input type="username" id="username" class="form-control" placeholder="username" required="" autofocus="">
+        <input type="username" id="username" class="form-control" placeholder="username" required autofocus="">
+        <span class="alert-danger" id="username_error"></span>
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" required="">
+        <input type="password" id="password" class="form-control" placeholder="Password" required>
+        <span class="alert-danger" id="password_error"></span>
 
         <div class="checkbox">
             <label>

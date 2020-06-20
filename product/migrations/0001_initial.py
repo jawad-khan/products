@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+
 from django.db import models, migrations
 from django.conf import settings
 
@@ -13,41 +15,45 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='adresses',
+            name='Address',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('address', models.CharField(max_length=50)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='product',
+            name='Product',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('Name', models.CharField(max_length=15)),
-                ('Detail', models.CharField(max_length=25)),
-                ('Price', models.IntegerField(default=0)),
+                ('name', models.CharField(max_length=15)),
+                ('detail', models.CharField(max_length=25)),
+                ('price', models.IntegerField(default=0)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='profile',
+            name='Profile',
             fields=[
-                ('user', models.OneToOneField(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('phone', models.CharField(max_length=15)),
+                ('user', models.OneToOneField(related_name=b'phone', primary_key=True, serialize=False,
+                                              to=settings.AUTH_USER_MODEL)),
+                ('image', models.ImageField(default=b'/products/default.jpg', upload_to=b'')),
+                ('phone', models.CharField(max_length=55)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='User_Product',
+            name='UserProduct',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('product', models.ForeignKey(to='product.product')),
+                ('bought_at', models.DateTimeField(default=datetime.datetime.now)),
+                ('product', models.ForeignKey(to='product.Product')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -55,7 +61,7 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='adresses',
+            model_name='address',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,

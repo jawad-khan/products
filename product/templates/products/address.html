@@ -12,8 +12,8 @@
 
     <title>Products</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="global.js"></script>
-    <script src="address.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/address.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -36,6 +36,11 @@
 
 <div class="container ">
 
+    <div class="alert alert-info alert-dismissible" style="display: none" role="alert" id="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="alert_cross"><span
+                aria-hidden="true">&times;</span></button>
+        <div id="alert-message"></div>
+    </div>
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="masthead">
@@ -46,34 +51,46 @@
                 <li><a href="user_products.html">My Products</a></li>
                 <li class="active"><a href="address.html">My Addresses</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="upload_image.html">Upload image</a></li>
                 <li><a href="" id="logout">Logout</a></li>
             </ul>
         </nav>
     </div>
-    <div class="row" style=" display: table ; margin: 0 auto; margin-top: 3% ; ">
-        <table id="main" border="1" class="table-responsive table-hover table-bordered table-striped table-bordered">
-            <tr>
-                <th>Addresses</th>
+    <div class="row" style=" display: table ; margin-top: 3% ; width: 100%; ">
+        <div class="col-md-4" style="margin-top: 3%;">
+            <table id="main" border="1"
+                   class="table-responsive table-hover table-bordered table-striped table-bordered">
+                <tr>
+                    <th>Addresses</th>
+                    <th>Country</th>
 
-            </tr>
+                </tr>
 
-        </table>
-        <table border="1" class="table-responsive table-hover table-bordered  table-bordered">
-            <tr>
-                <td><input type="text" id="address" placeholder="Enter address"></td>
+            </table>
+        </div>
+        <div class="col-md-8" style="margin-top: 3%; ">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" id="address" placeholder="Enter address">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="country">
+                        <option value="PK">Pakistan</option>
+                        <option value="US">USA</option>
+                        <option value="AS">Australia</option>
+                        <option value="UK">England</option>
+                        <option value="NZ">NewZeland</option>
+                    </select>
+                </div>
+                <button id="create" class="form-control">Create</button>
+            </form>
 
-                <td>
-                    <button id="create" style="width: 100%;">Create</button>
-                </td>
-            </tr>
-
-        </table>
-
+        </div>
     </div>
-    <!-- Site footer -->
-    <footer class="footer">
-    </footer>
+</div>
+
+<!-- Site footer -->
+<footer class="footer">
+</footer>
 
 </div>
 <!-- /container -->
