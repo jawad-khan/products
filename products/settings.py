@@ -57,7 +57,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
-EXPIRING_TOKEN_LIFESPAN = datetime.timedelta(minutes=5)
+EXPIRING_TOKEN_LIFESPAN = datetime.timedelta(minutes=20)
 
 CORS_ALLOW_HEADERS = (
         'x-requested-with',

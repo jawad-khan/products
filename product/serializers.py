@@ -1,40 +1,50 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from django.conf import settings
-from models import address, product, profile, User_Product
+
+from models import Address, Product, Profile, UserProduct
 
 
-class product_serializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = product
-        fields = ('id', 'Name', 'Detail', 'Price')
+        model = Product
+        fields = ('id', 'name', 'detail', 'price', 'image')
 
 
-class address_serializer(serializers.ModelSerializer):
+class AddressSerializer(serializers.ModelSerializer):
+    country = serializers.SerializerMethodField()
     class Meta:
-        model = address
-        fields = ('address', 'user')
+        model = Address
+        fields = ('address', 'user', 'country')
+    def get_country(self,obj):
+        return obj.get_country_display()
 
 
-class profile_serializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = profile
+        model = Profile
         fields = ('phone',)
 
 
-class user_product_serializer(serializers.ModelSerializer):
+class UserProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User_Product
+        model = UserProduct
         fields = ('user', 'product')
 
 
-class image_serializer(serializers.ModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model=profile
-        fields=('image',)
+        model = Profile
+        fields = ('image',)
 
-class user_serializer(serializers.ModelSerializer):
-    phone = profile_serializer()
+
+class CoverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('cover',)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    phone = ProfileSerializer()
 
     class Meta:
         model = User
@@ -43,12 +53,13 @@ class user_serializer(serializers.ModelSerializer):
     def create(self, validated_data):
         local_phone = validated_data.pop('phone')
         user = User.objects.create_user(**validated_data)
-        profile.objects.create(user=user, phone=local_phone['phone'])
+        Profile.objects.create(user=user, phone=local_phone['phone'])
         return user
 
-class complete_profile(serializers.ModelSerializer):
-    user=user_serializer()
+
+class CompleteProfile(serializers.ModelSerializer):
+    user = UserSerializer()
 
     class Meta:
-        model=profile
-        fields=( 'user', 'image', 'phone')
+        model = Profile
+        fields = ( 'user', 'image', 'phone', 'cover')

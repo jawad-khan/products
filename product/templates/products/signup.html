@@ -1,73 +1,85 @@
 <!DOCTYPE html>
+<!-- saved from url=(0040)http://getbootstrap.com/examples/signin/ -->
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Products</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        function signup() {
-            if ($("#username").val() && $("#email").val() && $("#password").val() && $("#phone").val())
-            {
 
-                var a =
-                {
-                    phone: $("#phone").val()
-                }
-                 var b  = {
-                        "username": $("#username").val(),
-                        "email": $("#email").val(),
-                        "password": $("#password").val(),
-                        "phone": a
-                    }
-                console.log('yahhhhhhhhh',b)
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://localhost:8000/app/signup/',
-                    dataType: 'json',
-                    data:b,
-                    success: function (data, status) {
-
-                        $("#username").val("");
-                        $("#email").val("");
-                        $("#password").val("");
-                        $("#phone").val("");
-                        alert("User created successfully")
-                    },
-                    error: function (error) {
-                        alert(error.responseText);
-                    }
-                });
+    <script src="js/global.js"></script>
+    <script src="js/signup.js"></script>
 
 
-            }
-            else {
-                alert("Please enter all the fields");
-            }
-        }
-
-    </script>
-     <script src="global.js"></script>
 </head>
 
 <body>
 
-<div id="navigation">
+<div class="container">
 
-    <a href="products.html">Products</a>
-    <a href="user_products.html">My Products</a>
-    <a href="address.html">My Addresses</a>
-    <a href="signup.html">Signup</a>
-    <a href="profile.html">Profile</a>
-    <a href="upload_image.html">Upload image</a>
-    <a href="login.html">Login</a>
-    <a href="" id="logout">Logout</a>
+    <div class="masthead">
+
+        <nav>
+            <ul class="nav nav-justified">
+                <li class="active"><a href="signup.html">Signup</a></li>
+                <li><a href="login.html">Login</a></li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <form class="form-signin">
+
+        <h2 class="form-signin-heading">Please sign up</h2>
+        <span class="alert-danger" id="non_field_errors_error"></span>
+        <label for="username" class="sr-only">username</label>
+        <input type="username" id="username" class="form-control" placeholder="username" required="" autofocus="">
+        <span class="alert-danger" id="username_error"></span>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" required="">
+        <span class="alert-danger" id="password_error"></span>
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="email" required="" autofocus="">
+        <span class="alert-danger" id="email_error"></span>
+        <label for="phone" class="sr-only">Phone</label>
+        <input type="phone" id="phone" class="form-control" placeholder="Phone" required="" autofocus="">
+        <span class="alert-danger" id="phone_error"></span>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signup">Sign up</button>
+    </form>
 
 </div>
+<!-- /container -->
 
-<input id="username" type="text" placeholder="username">
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-<input id="phone" type="text" placeholder="Phone">
-<input type="button" value="Submit" onclick="signup()">
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+
 
 </body>
 </html>

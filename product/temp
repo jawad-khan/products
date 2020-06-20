@@ -1,0 +1,8 @@
+def append_base_path(data,key,many=False):
+    if many:
+        for item in data:
+            item[key] =  settings.BASE_DIR + item[key]
+        return data;
+    else:
+        data[key]=settings.BASE_DIR+data[key]
+        return data
